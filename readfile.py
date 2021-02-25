@@ -71,7 +71,7 @@ def convert_to_list_of_streets(street_lines, num_of_intersections):
         street_name = line[STREET_NAME_INDEX]
         end_intersection = int(line[STREET_END_NODE_INDEX])
         travel_time = int(line[STREET_TRAVEL_TIME_INDEX])
-        current_street = Street(travel_time)
+        current_street = Street(street_name, travel_time)
         streets[street_name] = current_street
         intersection_list[end_intersection].incoming_streets.append(current_street)
 

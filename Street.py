@@ -1,6 +1,7 @@
 class Street:
 
-    def __init__(self, travel_time):
+    def __init__(self, name, travel_time):
+        self.name = name
         self.travel_time = travel_time
         self.waiting_cars = []
         self.travelling_cars = []  # list of tuples (car, start time)
