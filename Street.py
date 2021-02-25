@@ -14,4 +14,6 @@ class Street:
                 self.waiting_cars.append(new_car)
 
     def get_waiting_car(self):
+        if len(self.waiting_cars) == 0:
+            return None
         return self.waiting_cars.pop(0)

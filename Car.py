@@ -3,7 +3,9 @@ class Car:
         self.streets = streets
 
     def get_next_road(self):
+        if self.streets.empty():
+            return None
         return self.streets.pop(0)
 
     def finished(self) -> bool:
-        return self.streets.empty()
+        return len(self.streets) == 0
