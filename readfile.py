@@ -46,11 +46,11 @@ def get_input_information(input_file):
         car_paths.append(file_content_lines[i])
         i += 1
 
-    _, intersection_num, _, _, _ = get_basic_information(basic_info)
+    duration, intersection_num, _, _, _ = get_basic_information(basic_info)
     streets, intersection_list = convert_to_list_of_streets(streets, intersection_num)
     cars = convert_to_car_paths(car_paths, streets)
 
-    return basic_info, streets, intersection_list, cars
+    return duration, streets, intersection_list, cars
 
 
 def get_basic_information(basic_info_lines):
