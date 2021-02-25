@@ -9,7 +9,8 @@ class Intersection:
         if self.curr_street is None or len(self.curr_street.waiting_cars) == 0:
             if len(self.incoming_streets) == 0:
                 return None
-            self.get_max_car_street(current_time)
+            if self.get_max_car_street(current_time) is None:
+                return
 
         self.curr_street.update_travelling_cars(current_time)
         while self.curr_street.get_waiting_car:
@@ -32,6 +33,8 @@ class Intersection:
             if temp_num_cars > num_cars:
                 street = temp_street
                 num_cars = temp_num_cars
+        if num_cars == 0:
+            return None
         self.incoming_streets.remove(street)
         self.curr_street = street
         self.schedule.append((street, current_time))
