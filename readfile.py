@@ -1,4 +1,5 @@
 from Street import Street
+from Intersection import Intersection
 
 BONUS_POINT_INDEX = 4
 
@@ -42,11 +43,11 @@ def get_input_information(input_file):
         car_paths.append(file_content_lines[i])
         i += 1
 
-    _, _, _, _, _ = get_basic_information(basic_info)
-    print(streets)
+    _, intersection_num, _, _, _ = get_basic_information(basic_info)
+    street_list, intersection_list = convert_to_list_of_streets(streets)
     print(car_paths)
 
-    return basic_info, streets, car_paths
+    return basic_info, street_list, intersection_list, car_paths
 
 
 def get_basic_information(basic_info_lines):
@@ -59,10 +60,16 @@ def get_basic_information(basic_info_lines):
     return duration, intersection_num, street_num, car_num, bonus_points
 
 
-def convert_to_list_of_streets(street_lines):
+def convert_to_list_of_streets(street_lines, num_of_intersections):
+    intersection_list = [Intersection([], intersection_id) for intersection_id in range(num_of_intersections)]
     street_list = []
     for line in street_lines:
         line = line.split(" ")
-        current_street = Street(line[STREET_NAME_INDEX], line[STREET_BEGIN_NODE_INDEX], line[STREET_END_NODE_INDEX],
-                                line[STREET_TRAVEL_TIME_INDEX])
+        start_intersection = int(line[STREET_BEGIN_NODE_INDEX])
+        end_intersection = int(line[STREET_END_NODE_INDEX])
+        travel_time = int(line[STREET_TRAVEL_TIME_INDEX])
+        current_street = Street(line[STREET_NAME_INDEX], start_intersection, end_intersection, travel_time)
+        intersection_list[end_intersection].edges.append(current_street)
         street_list.append(current_street)
+
+    return street_list, intersection_list
