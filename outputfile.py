@@ -1,5 +1,5 @@
-def output(intersections, end_time):
-    f = open("schedule.txt", "w")
+def output(intersections, end_time, name):
+    f = open(f"schedule-{name}.txt", "w")
     f.write(str(len(intersections)) + "\n")
 
     for intersection in intersections:
