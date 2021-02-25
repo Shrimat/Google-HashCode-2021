@@ -1,25 +1,34 @@
-f = open("../a.txt", "r")
-file_content_lines = f.read().splitlines()
 
 
-def is_road(line: str) -> bool:
+def is_street(line: str) -> bool:
     words = line.split(" ")
     return words[1].isdigit()
 
 
-basic_info = file_content_lines[0]
-roads = []
-car_paths = []
+def get_input_information(input_file):
+    with open(input_file, "r") as f:
+        file_content_lines = f.read().splitlines()
 
-i = 1
-while i < len(file_content_lines):
-    if not is_road(file_content_lines[i]):
-        break
-    roads.append(file_content_lines[i])
-    i += 1
-while i < len(file_content_lines):
-    car_paths.append(file_content_lines[i])
-    i += 1
+    basic_info = file_content_lines[0]
+    streets = []
+    car_paths = []
+
+    i = 1
+    while i < len(file_content_lines):
+        if not is_street(file_content_lines[i]):
+            break
+        streets.append(file_content_lines[i])
+        i += 1
+    while i < len(file_content_lines):
+        car_paths.append(file_content_lines[i])
+        i += 1
+
+    print(basic_info)
+    print(streets)
+    print(car_paths)
+
+    return basic_info, streets, car_paths
+
 
 '''print(basic_info)
 print(roads)
