@@ -1,5 +1,15 @@
 from Street import Street
 
+BONUS_POINT_INDEX = 4
+
+CAR_NUM_INDEX = 3
+
+STREET_NUM_INDEX = 2
+
+INTERSECTION_NUM_INDEX = 1
+
+DURATION_INDEX = 0
+
 STREET_TRAVEL_TIME_INDEX = 3
 
 STREET_END_NODE_INDEX = 1
@@ -32,11 +42,21 @@ def get_input_information(input_file):
         car_paths.append(file_content_lines[i])
         i += 1
 
-    print(basic_info)
+    _, _, _, _, _ = get_basic_information(basic_info)
     print(streets)
     print(car_paths)
 
     return basic_info, streets, car_paths
+
+
+def get_basic_information(basic_info_lines):
+    basic_info_lines = basic_info_lines.split()
+    duration = int(basic_info_lines[DURATION_INDEX])
+    intersection_num = int(basic_info_lines[INTERSECTION_NUM_INDEX])
+    street_num = int(basic_info_lines[STREET_NUM_INDEX])
+    car_num = int(basic_info_lines[CAR_NUM_INDEX])
+    bonus_points = int(basic_info_lines[BONUS_POINT_INDEX])
+    return duration, intersection_num, street_num, car_num, bonus_points
 
 
 def convert_to_list_of_streets(street_lines):
