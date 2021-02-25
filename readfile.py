@@ -1,3 +1,12 @@
+from Street import Street
+
+STREET_TRAVEL_TIME_INDEX = 3
+
+STREET_END_NODE_INDEX = 1
+
+STREET_BEGIN_NODE_INDEX = 0
+
+STREET_NAME_INDEX = 2
 
 
 def is_street(line: str) -> bool:
@@ -30,6 +39,10 @@ def get_input_information(input_file):
     return basic_info, streets, car_paths
 
 
-'''print(basic_info)
-print(roads)
-print(car_paths)'''
+def convert_to_list_of_streets(street_lines):
+    street_list = []
+    for line in street_lines:
+        line = line.split(" ")
+        current_street = Street(line[STREET_NAME_INDEX], line[STREET_BEGIN_NODE_INDEX], line[STREET_END_NODE_INDEX],
+                                line[STREET_TRAVEL_TIME_INDEX])
+        street_list.append(current_street)
