@@ -73,7 +73,7 @@ def convert_to_list_of_streets(street_lines, num_of_intersections):
         travel_time = int(line[STREET_TRAVEL_TIME_INDEX])
         current_street = Street(travel_time)
         streets[street_name] = current_street
-        intersection_list[end_intersection].edges.append(current_street)
+        intersection_list[end_intersection].incoming_streets.append(current_street)
 
     return streets, intersection_list
 
@@ -86,7 +86,7 @@ def convert_to_car_paths(cars, streets):
         num_of_streets = int(car_line[NUM_OF_STREETS_IN_PATH_INDEX])
         for street_index in range(num_of_streets):
             street_name = car_line[1 + street_index]
-            current_car.streets.append(street_name[street_index])
+            current_car.streets.append(streets[street_name])
         car_list.append(current_car)
 
     return car_list
