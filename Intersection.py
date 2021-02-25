@@ -29,6 +29,7 @@ class Intersection:
             if temp_num_cars > num_cars:
                 street = temp_street
                 num_cars = temp_num_cars
+        self.incoming_streets.remove(street)
         self.curr_street = street
         self.schedule.append((street, current_time))
 
